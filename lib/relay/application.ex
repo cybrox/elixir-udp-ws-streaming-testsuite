@@ -50,6 +50,14 @@ defmodule Relay.Application do
     else
       children
     end
+    
+    # WSTESTER=true RELAY_IN=10667 WS_URL=127.0.0.1 WS_PORT=8081 WS_PATH="/" iex -S mix
+    # Sends data to RELAY_IN and checks if the same data is returned via websocket
+    children = if System.get_env("WSTESTER") == "true" do
+      [{Relay.TesterWebsocket, []} | children]
+    else
+      children
+    end
 
     # RECEIVER=true [DUMP=true] RELAY_IN=10666 iex -S mix
     # Expect UDP on RELAY_IN and DUMP to file if wanted

@@ -39,6 +39,13 @@ Send UDP to `RELAY_IN` via `SENDER` and expect echo on `RELAY_OUT`
 TESTER=true RELAY_IN=10666 RELAY_OUT=10667 SENDER=20667 iex -S mix
 ```
 
+
+# Testing the UDP to Websocket relay
+Expect UDP on `RELAY_IN` and checks if the same data is returned via websocket
+```bash
+WSTESTER=true RELAY_IN=10667 WS_URL=127.0.0.1 WS_PORT=8081 WS_PATH="/" iex -S mix
+```
+
 ## Record UDP traffic and save to file
 Expect UDP on `RELAY_IN` and `DUMP` to `./recording` file if wanted
 
