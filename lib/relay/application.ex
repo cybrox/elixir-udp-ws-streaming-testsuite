@@ -8,10 +8,20 @@ defmodule Relay.Application do
   def start(_type, _args) do
     children = []
 
-    # WS=true RELAY_IN=10666 iex -S mix
+    # WS=true RELAY_IN=10667 iex -S mix
     # Expect UDP on RELAY_IN and send to ws connected on :8081
+    # This is used as a direct replacement for visio
     children = if System.get_env("WS") == "true" do
       [{Relay.Websocket, []} | children]
+    else
+      children
+    end
+
+    # WSRELAY=true RELAY_IN=10667 WS_URL=127.0.0.1 WS_PORT=9091 WS_PATH=... iex -S mix
+    # Expect UDP on `RELAY_IN` relay the data to `WS_TARGET`
+    # This is what will eventually be implemented on the AVC1
+    children = if System.get_env("WSRELAY") == "true" do
+      [{Relay.WebsocketRelay, []} | children]
     else
       children
     end

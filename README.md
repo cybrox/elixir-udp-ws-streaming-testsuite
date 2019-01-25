@@ -1,10 +1,19 @@
 # Elixir H.264 UDP Websocket Test Suite
 
-## Streaming from UDP to Websocket
-Expect UDP on `RELAY_IN` and send to ws connected on :8081
+## Streaming from UDP to websocket clients
+Expect UDP on `RELAY_IN` and send to ws connected on :8081   
+This is used as a direct replacement for visio
 
 ```bash
 WS=true RELAY_IN=10666 iex -S mix
+```
+
+## Streaming from UDP to a websocket server
+Expect UDP on `RELAY_IN` relay the data to `WS_TARGET`    
+This is what will eventually be implemented on the AVC1
+
+```bash
+WSRELAY=true RELAY_IN=10666 WS_URL=127.0.0.1 WS_PORT=9091 WS_PATH="/producer?stream_id=test" iex -S mix
 ```
 
 ## Relaying an incoming UDP stream
