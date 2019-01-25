@@ -1,7 +1,16 @@
 # Elixir H.264 UDP Websocket Test Suite
 
+## Connect to websocket and output received data
+Connects to websocket on `WS_URL:WS_PORT` with `WS_PATH`    
+Will output all received data
+
+```bash
+WSRECEIVER=true WS_URL=127.0.0.1 WS_PORT=9091 WS_PATH="/producer?stream_id=test" iex -S mix
+```
+
+
 ## Streaming from UDP to websocket clients
-Expect UDP on `RELAY_IN` and send to ws connected on :8081   
+Expect UDP on `RELAY_IN` and send to ws connected on :8081    
 This is used as a direct replacement for visio
 
 ```bash

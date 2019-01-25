@@ -8,6 +8,15 @@ defmodule Relay.Application do
   def start(_type, _args) do
     children = []
 
+    # WSRECEIVER=true WS_URL=127.0.0.1 WS_PORT=9091 WS_PATH="/producer?stream_id=test" iex -S mix
+    # Connects to websocket on `WS_URL:WS_PORT` with `WS_PATH`    
+    # Will output all received data
+    children = if System.get_env("WSRECEIVER") == "true" do
+      [{Relay.WebsocketReceiver, []} | children]
+    else
+      children
+    end
+
     # WS=true RELAY_IN=10667 iex -S mix
     # Expect UDP on RELAY_IN and send to ws connected on :8081
     # This is used as a direct replacement for visio
