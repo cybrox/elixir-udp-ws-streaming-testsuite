@@ -24,3 +24,5 @@ relay-*.tar
 
 # Ignore traffic capture file
 capture
+record
+

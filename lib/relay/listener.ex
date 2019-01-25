@@ -26,7 +26,7 @@ defmodule Relay.Listener do
     IO.inspect Enum.count(data)
 
     # Will it work if we convert stuff?
-    data = String.to_charlist(List.to_string(data))
+    data = :binary.bin_to_list(:binary.list_to_bin(data))
 
     :gen_udp.send(state.sender, '192.168.1.55', state.target_port, data)
     {:noreply, state}

@@ -26,7 +26,7 @@ defmodule Relay.Tester do
   end
 
   def handle_info({:udp, _socket, _ip, _port, data}, state) do
-    received_data = List.to_string(data)
+    received_data = :binary.list_to_bin(data)
     IO.puts "OK! Received data"
 
     if received_data == state.data do

@@ -24,7 +24,7 @@ defmodule Relay.WebsocketRelay do
 
   def handle_info({:udp, _socket, _ip, _port, data}, state) do
     IO.inspect Enum.count(data)
-    Socket.Web.send!(state.socket, {:binary, List.to_string(data)})
+    Socket.Web.send!(state.socket, {:binary, :binary.list_to_bin(data)})
     {:noreply, state}
   end
 
