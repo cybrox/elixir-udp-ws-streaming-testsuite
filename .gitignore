@@ -23,4 +23,4 @@ erl_crash.dump
 relay-*.tar
 
 # Ignore traffic capture file
-./capture
+capture
